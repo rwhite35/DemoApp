@@ -1,0 +1,48 @@
+<?php
+/**
+ * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ */
+
+return [
+    // Additional modules to include when in development mode
+    'modules' => [
+        'Zend\Hydrator',
+        'Zend\InputFilter',
+        'Zend\Filter',
+        'Zend\I18n',
+        'Zend\ServiceManager\Di',
+        'Zend\Session',
+        'Zend\Mvc\Plugin\Prg',
+        'Zend\Mvc\Plugin\Identity',
+        'Zend\Mvc\Plugin\FlashMessenger',
+        'Zend\Mvc\Plugin\FilePrg',
+        'Zend\Mvc\I18n',
+        'Zend\Log',
+        'Zend\Form',
+        'Zend\Db',
+        'Zend\Cache',
+        'ZF\Versioning',
+        'ZF\ApiProblem',
+        'ZF\ContentNegotiation',
+        'ZF\Rpc',
+        'ZF\MvcAuth',
+        'ZF\Hal',
+        'ZF\Rest',
+        'ZF\ContentValidation',
+        'ZF\Apigility',
+        'ZF\Configuration',
+        'ZF\Apigility\Admin',
+        'ZF\Apigility\Documentation',
+        'StatusLib',
+        'ZfrCors',
+        'ZendDeveloperTools',
+    ],
+    // Configuration overrides during development mode
+    'module_listener_options' => [
+        'config_glob_paths' => [realpath(__DIR__) . '/autoload/{,*.}{global,local}-development.php'],
+        'config_cache_enabled' => false,
+        'module_map_cache_enabled' => false,
+    ],
+];
