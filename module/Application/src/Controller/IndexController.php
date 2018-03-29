@@ -8,12 +8,21 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use ZF\Apigility\Admin\Module as AdminModule;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        error_log('Application\IndexController ran');
+        
+        // If API call, send to API Admin
+        if (class_exists(AdminModule::class, false)) {
+            return $this->redirect()->toRoute('zf-apigility/ui');
+        } else {
+            return new ViewModel();
+        }
+        
     }
 }

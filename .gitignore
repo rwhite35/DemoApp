@@ -1,6 +1,7 @@
 .vagrant/
 vendor/
 config/development.config.php
+config/modules.config.old
 data/cache/*
 !data/cache/.gitkeep
 phpunit.xml
@@ -8,3 +9,5 @@ CONDUCT.md
 CONTRIBUTING.md
 TODO.md
 composer.lock
+.settings/com.zend.php.remoteproject.core.prefs
+.settings/org.eclipse.php.core.prefs

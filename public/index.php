@@ -1,7 +1,8 @@
 <?php
 
-use Zend\Mvc\Application;
+// use Zend\Mvc\Application;        // when not using apigility
 use Zend\Stdlib\ArrayUtils;
+use ZF\Apigility\Application;        // call this when using apigility
 
 /**
  * This makes our life easier when dealing with paths. Everything is relative

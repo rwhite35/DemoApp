@@ -34,7 +34,7 @@
 		"zfcampus/statuslib-example" : "^1.1",
 		"zendframework/zendframework" : "^3.0",
 		"zfr/zfr-cors" : "1.*",
-		"rwoverdijk/assetmanager": "^1.7"
+		"rwoverdijk/assetmanager" : "^1.7"
 	},
 	"require-dev" : {
 		"zendframework/zend-developer-tools" : "^1.1",
@@ -42,7 +42,7 @@
 		"zfcampus/zf-asset-manager" : "^1.2",
 		"zfcampus/zf-composer-autoloading" : "^1.0",
 		"zfcampus/zf-deploy" : "^1.2",
-		"zfcampus/zf-development-mode": "~2.0"
+		"zfcampus/zf-development-mode" : "~2.0"
 	},
 	"suggest" : {
 		"zfcampus/zf-apigility-doctrine" : "zfcampus/zf-apigility-doctrine ^2.1 to create Doctrine-Connected REST services",
