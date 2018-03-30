@@ -1,5 +1,6 @@
 .vagrant/
 vendor/
+!/vendor/demolib
 config/development.config.php
 config/modules.config.old
 data/cache/*
