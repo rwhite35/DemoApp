@@ -33,5 +33,5 @@ return array(
     'Zend\\Validator',
     'Application',
     'AssetManager',
-    'login',
+    'Login',
 );

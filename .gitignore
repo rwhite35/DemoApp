@@ -11,3 +11,4 @@ TODO.md
 composer.lock
 .settings/com.zend.php.remoteproject.core.prefs
 .settings/org.eclipse.php.core.prefs
+.DS_Store

@@ -4,6 +4,7 @@ return array(
         'authentication' => array(
             'map' => array(
                 'login\\V1' => 'basic',
+                'Login\\V1' => 'basic',
             ),
         ),
     ),
