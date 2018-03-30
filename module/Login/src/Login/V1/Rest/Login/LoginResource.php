@@ -1,20 +1,36 @@
 <?php
+/**
+ * LoginResouce Object listens for API calls and inherits its 
+ * functionality from DemoLib (vedor/demolib) which defines each method body.
+ */
 namespace Login\V1\Rest\Login;
 
+use DemoLib\MapperInterface;
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
 
 class LoginResource extends AbstractResourceListener
 {
     /**
-     * Create a resource
+     * Class property mapper
+     * holds the input/ouput data for API calls.
+     */
+    protected $mapper;
+    
+    public function __construct(MapperInterface $mapper)
+    {
+        $this->mapper = $mapper;
+    }
+    
+    /**
+     * Create (POST) a resource
      *
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
     public function create($data)
     {
-        return new ApiProblem(405, 'The POST method has not been defined');
+        return $this->mapper->create($data);
     }
 
     /**
@@ -25,18 +41,8 @@ class LoginResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
-    }
-
-    /**
-     * Delete a collection, or members of a collection
-     *
-     * @param  mixed $data
-     * @return ApiProblem|mixed
-     */
-    public function deleteList($data)
-    {
-        return new ApiProblem(405, 'The DELETE method has not been defined for collections');
+        return $this->mapper->delete($id);
+        // return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
     }
 
     /**
@@ -47,7 +53,8 @@ class LoginResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
-        return new ApiProblem(405, 'The GET method has not been defined for individual resources');
+        return $this->mapper->fetch($id);
+        // return new ApiProblem(405, 'The GET method has not been defined for individual resources');
     }
 
     /**
@@ -58,7 +65,8 @@ class LoginResource extends AbstractResourceListener
      */
     public function fetchAll($params = [])
     {
-        return new ApiProblem(405, 'The GET method has not been defined for collections');
+        return $this->mapper->fetchAll($id);
+        // return new ApiProblem(405, 'The GET method has not been defined for collections');
     }
 
     /**
@@ -71,6 +79,30 @@ class LoginResource extends AbstractResourceListener
     public function patch($id, $data)
     {
         return new ApiProblem(405, 'The PATCH method has not been defined for individual resources');
+    }
+    
+    /**
+     * Update (PUT) a resource
+     *
+     * @param  mixed $id
+     * @param  mixed $data
+     * @return ApiProblem|mixed
+     */
+    public function update($id, $data)
+    {
+        return $this->mapper->update($id, $data);
+        // return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
+    }
+    
+    /**
+     * Delete a collection, or members of a collection
+     *
+     * @param  mixed $data
+     * @return ApiProblem|mixed
+     */
+    public function deleteList($data)
+    {
+        return new ApiProblem(405, 'The DELETE method has not been defined for collections');
     }
 
     /**
@@ -94,16 +126,5 @@ class LoginResource extends AbstractResourceListener
     {
         return new ApiProblem(405, 'The PUT method has not been defined for collections');
     }
-
-    /**
-     * Update a resource
-     *
-     * @param  mixed $id
-     * @param  mixed $data
-     * @return ApiProblem|mixed
-     */
-    public function update($id, $data)
-    {
-        return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
-    }
+    
 }
