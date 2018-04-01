@@ -6,12 +6,13 @@
  */
 namespace Login\V1\Rest\Login;
 
-use DemoLib\Mapper;
+use DemoLib\ArrayMapper;
 
 class LoginResourceFactory
 {
     public function __invoke($services)
     {
-        return new LoginResource($services->get(Mapper::class));
+        // was Mapper::class before
+        return new LoginResource($services->get(ArrayMapper::class));
     }
 }

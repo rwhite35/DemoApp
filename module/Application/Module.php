@@ -34,5 +34,5 @@ class Module implements ApigilityProviderInterface
     {
         return include __DIR__ . '/config/module.config.php';
     }
-                
+    
 }

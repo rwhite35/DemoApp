@@ -31,6 +31,7 @@ return array(
     'Zend\\Session',
     'Zend\\ServiceManager\\Di',
     'Zend\\Validator',
+    'ZfrCors',
     'Application',
     'AssetManager',
     'Login',

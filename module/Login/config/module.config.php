@@ -140,7 +140,7 @@ return array(
                 'entity' => array(
                     'GET' => false,
                     'POST' => false,
-                    'PUT' => true,
+                    'PUT' => false,
                     'PATCH' => true,
                     'DELETE' => true,
                 ),

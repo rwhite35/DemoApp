@@ -19,7 +19,8 @@ then please install as per the [documentation](https://getcomposer.org/doc/00-in
 
 ## Deploy the DemoApp project
 To deploy the DemoApp to your local dev environment, clone the project from GitHub 
-and run the following command in the DemoApp root directory
+and run the following command in the DemoApp root directory. Note, this will install
+into the vendor directory the packages defined in composer.json.
 
 ```bash
 $ composer self-update

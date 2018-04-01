@@ -1,17 +1,83 @@
-<?php 
-/**
- * embeds basic information about the endpoint that instantiates DemoLib mapper service.
- * Set our local time zone incase its not set globally in the .ini file.
- */
-date_default_timezone_set("America/New_York");
-
-return [
-    '01f0462d-15d8-4fbc-b113-1d0e106b1135' => [
+<?php
+return array(
+    '01f0462d-15d8-4fbc-b113-1d0e106b1135' => array(
         'model_name' => 'DemoLib Array_Mapper Service',
         'model_id' => '1234-5678-7890',
         'id' => '01f0462d-15d8-4fbc-b113-1d0e106b1135',
-        'timestamp' => time(),
-    ],
-];
-
-?>
+        'timestamp' => 1522545605,
+    ),
+    'c2a3af93-61f5-447e-a883-22ed17dd41a8' => array(
+        'user' => 'joe',
+        'password' => 'tammy',
+        'id' => 'c2a3af93-61f5-447e-a883-22ed17dd41a8',
+        'timestamp' => 1522545605,
+    ),
+    'c82c39a7-ff67-411d-bd1d-b01851fa66b4' => array(
+        'user' => 'joe',
+        'password' => 'tammy',
+        'id' => 'c82c39a7-ff67-411d-bd1d-b01851fa66b4',
+        'timestamp' => 1522545828,
+    ),
+    '028472e2-4b0e-43b5-a13f-2ea36eecccbf' => array(
+        'user' => 'Jimmy',
+        'password' => 'Slim',
+        'id' => '028472e2-4b0e-43b5-a13f-2ea36eecccbf',
+        'timestamp' => 1522546106,
+    ),
+    '19b6176d-26f3-41a1-83e4-e87c30b3d132' => array(
+        'user' => 'Pong',
+        'password' => 'ping',
+        'message' => 'This is test data.',
+        'id' => '19b6176d-26f3-41a1-83e4-e87c30b3d132',
+        'timestamp' => 1522546530,
+    ),
+    '5708e6dc-1332-4e5e-a189-95f3bdcbdc21' => array(
+        'user' => 'Planet',
+        'password' => 'Earth',
+        'message' => 'This is test data.',
+        'id' => '5708e6dc-1332-4e5e-a189-95f3bdcbdc21',
+        'timestamp' => 1522546732,
+    ),
+    '270d1b4c-d156-4d2c-9921-1611474dec00' => array(
+        'user' => 'Failer',
+        'password' => 'Slim',
+        'message' => 'This is test data.',
+        'id' => '270d1b4c-d156-4d2c-9921-1611474dec00',
+        'timestamp' => 1522547441,
+    ),
+    'ddae766a-7e3a-4b0d-83f7-855090ee54ed' => array(
+        'user' => 'deputy',
+        'password' => 'dog',
+        'message' => 'This is test data.',
+        'id' => 'ddae766a-7e3a-4b0d-83f7-855090ee54ed',
+        'timestamp' => 1522548792,
+    ),
+    '1f17b2ce-5f84-452d-badd-b688acf359f0' => array(
+        'user' => 'Test',
+        'password' => 'Response',
+        'message' => 'This is test data.',
+        'id' => '1f17b2ce-5f84-452d-badd-b688acf359f0',
+        'timestamp' => 1522548892,
+    ),
+    '9efe3e7f-2b83-43ae-a3a4-29c099245ef2' => array(
+        'user' => 'Betty',
+        'password' => 'Lou',
+        'message' => 'This is test data.',
+        'id' => '9efe3e7f-2b83-43ae-a3a4-29c099245ef2',
+        'timestamp' => 1522549256,
+    ),
+    '36472a60-51d0-4612-9314-8e5c54eb6c97' => array(
+        'user' => 'Tedd',
+        'password' => 'Talks',
+        'message' => 'This is test data.',
+        'id' => '36472a60-51d0-4612-9314-8e5c54eb6c97',
+        'timestamp' => 1522549534,
+    ),
+    'f9c34f1f-e4e9-4997-8f59-99acaf3ba0ef' => array(
+        'user' => 'Barney',
+        'password' => 'Miller',
+        'message' => 'This is test data.',
+        'id' => 'f9c34f1f-e4e9-4997-8f59-99acaf3ba0ef',
+        'timestamp' => 1522550358,
+    ),
+);

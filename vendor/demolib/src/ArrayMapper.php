@@ -106,6 +106,7 @@ class ArrayMapper implements MapperInterface
      */
     public function fetchAll()
     {
+        error_log('demolib/ArrayMapper ran');
         return new Collection($this->createCollection());
     }
 

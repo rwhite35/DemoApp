@@ -58,14 +58,24 @@ class LoginResource extends AbstractResourceListener
     }
 
     /**
-     * Fetch all or a subset of resources
+     * Fetch all or a subset of Login resources endpoint info
+     * This return the configurations for the resources endpoint
+     * collection
      *
-     * @param  array $params
+     * @param  array $params, the Mapper interface doesnt specific any parameters.
+     * however, the outside could pass in params and some logic could handle the
+     * input.  Perhaps a validation intercept..
+     * 
      * @return ApiProblem|mixed
      */
     public function fetchAll($params = [])
     {
-        return $this->mapper->fetchAll($id);
+        ob_start();
+        var_dump($params);
+        $str = ob_end_clean();
+        error_log("LoginResource params array $str");
+        
+        return $this->mapper->fetchAll();
         // return new ApiProblem(405, 'The GET method has not been defined for collections');
     }
 

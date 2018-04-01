@@ -86,6 +86,7 @@ class TableGatewayMapper implements MapperInterface
      */
     public function fetchAll()
     {
+        error_log('demolib/TableGatewayMap fetchAll ran');
         return new Collection(new DbTableGateway($this->table, null, ['timestamp' => 'DESC']));
     }
 
