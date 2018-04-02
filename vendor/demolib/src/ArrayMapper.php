@@ -56,7 +56,7 @@ class ArrayMapper implements MapperInterface
      * @param array|Traversable|\stdClass $data
      * @return Entity
      */
-    public function create($data)
+    public function create($data, $user_name)
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
@@ -64,10 +64,27 @@ class ArrayMapper implements MapperInterface
         if (is_object($data)) {
             $data = (array) $data;
         }
-
+        // check if array
         if (! is_array($data)) {
             throw new InvalidArgumentException(sprintf(
                 'Invalid data provided to %s; must be an array or Traversable',
+                __METHOD__
+            ));
+        // check user names
+        } else if ($data['user'] != $user_name) {
+            $data['message'] = [
+                'error_code' => 401,
+                'error_message' => $data['user'] . ' is an invalid'
+            ];
+            error_log('L80 ArrayMapper->create invalid user ' . 
+                $data['message']['error_code'] .
+                ' message ' . $data['message']['error_message']);
+           
+            // exit here before generating XID
+            return $this->createEntity($data);
+                
+            throw new InvalidArgumentException(sprintf(
+                'The User Name provided to %s; does not match the client record.',
                 __METHOD__
             ));
         }
@@ -78,11 +95,12 @@ class ArrayMapper implements MapperInterface
         if (! isset($data['timestamp']) || ! $data['timestamp']) {
             $data['timestamp'] = time();
         }
-
+        
         $this->data[$id] = $data;
         $this->persistData();
-
+        
         return $this->createEntity($data);
+
     }
 
     /**
@@ -106,7 +124,6 @@ class ArrayMapper implements MapperInterface
      */
     public function fetchAll()
     {
-        error_log('demolib/ArrayMapper ran');
         return new Collection($this->createCollection());
     }
 

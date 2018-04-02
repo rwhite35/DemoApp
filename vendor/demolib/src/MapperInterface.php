@@ -11,9 +11,10 @@ interface MapperInterface
 {
     /**
      * @param array|\Traversable|\stdClass $data 
+     * @param string $user_name the user allowed to login.
      * @return Entity
      */
-    public function create($data);
+    public function create($data, $user_name);
 
     /**
      * @param string $id 

@@ -37,11 +37,20 @@ class LoginResource extends AbstractResourceListener
      * Create (POST) a resource
      *
      * @param  mixed $data
-     * @return ApiProblem|mixed
+     * @return ApiProblem|mixed, 401 is error code passed back to frontend. True is success.
      */
     public function create($data)
     {
-        return $this->mapper->create($data);
+        // Get Client Users to authenticate against
+        $cnt = $this->loginService->pullClientUsers(); // return number of client users to check
+        $cnt--;
+        $uid = $this->loginService->pullClientUser($cnt)->getUid();
+        $user_name = $this->loginService->pullClientUser($cnt)->getUserRecord()['user_name'];
+        error_log('LoginResource LoginService->getUid value ' . $uid . ' of count ' . $cnt);
+        error_log('LoginResource LoginService->getUserRecord name value ' . $user_name . ' of count ' . $cnt);
+        
+        return $this->mapper->create($data, $user_name);
+        
     }
 
     /**
@@ -81,9 +90,6 @@ class LoginResource extends AbstractResourceListener
      */
     public function fetchAll($params = [])
     {
-        // set the users records
-        $this->loginService->pullAppUsers();
-        
         return $this->mapper->fetchAll();   
     }
 

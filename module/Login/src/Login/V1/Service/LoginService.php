@@ -9,6 +9,11 @@ use Login\V1\Model\Login;
 class LoginService implements LoginServiceInterface
 {
     /**
+     * Login Model object
+     */
+    protected $Model;
+    
+    /**
      * All users records in the database
      * this will be replaces with a db query.
      */
@@ -33,39 +38,44 @@ class LoginService implements LoginServiceInterface
         ]
     ];
     
-    /**
-     * @TODO convert to DB Query.
-     * {@inheritdoc}
-     * @return array all application users
-     */
-    public function pullAppUsers()
-    {
-        $allUsers = [];
-        
-        foreach($this->usersData as $i => $user) {
-            $allUsers[] = $this->pullUser($i);
-        }
-       
-        return $allUsers;
+    public function __construct() {
+        $this->Model = new Login;
     }
     
     /**
+     * @TODO convert to DB Query.
+     * Loops over each client user and sets them to the Login object
+     * {@inheritdoc}
+     * @return object Login clients
+     */
+    public function pullClientUsers()
+    {
+        $allUsers = [];
+        $count = 0;
+        foreach($this->usersData as $i => $user) {
+            $count++;
+            $allUsers[] = $this->pullClientUser($i);
+        }
+        
+        // return $allUsers;
+        return $count;
+    }
+    
+    /**
+     * Sets a users record by index id
      * {@inheritdoc}
      */
-    public function pullUser($i)
+    public function pullClientUser($i)
     {   
         $userRecord = $this->usersData[$i];
         
-        $model = new Login();
-        $model->setUid($userRecord['uid']);
-        $model->setUserRecord($userRecord);
+        $this->Model->setUid($userRecord['uid']);
+        $this->Model->setUserRecord($userRecord);
         
-        error_log('L63: LoginService user id is ' . $model->getUid());
-        error_log('L64: LoginService user name is ' . $model->getUserRecord()['user_name']);
+        // error_log('L63: LoginService user id is ' . $this->Model->getUid());
+        // error_log('L64: LoginService user name is ' . $this->Model->getUserRecord()['user_name']);
         
-        return $model;
+        return $this->Model;
     }
-    
-}
 
-?>
+}

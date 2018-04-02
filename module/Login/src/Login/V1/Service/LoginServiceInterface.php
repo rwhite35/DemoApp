@@ -13,17 +13,17 @@ use Login\V1\Model\LoginInterface;
 interface LoginServiceInterface
 {
     /**
-     * should pull all client users from
+     * pulls ALL client users from
      * the database table - users
      * @return array PostInterface
      */
-    public function pullAppUsers();
+    public function pullClientUsers();
     
     /**
-     * should pull only one client user from users
+     * pulls only ONE client user from users
      * @param int $uid the users.uid
      * @return array PostInterface
      */
-    public function pullUser($uid);
+    public function pullClientUser($uid);
     
 }
