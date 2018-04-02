@@ -9,16 +9,27 @@ use DemoLib\MapperInterface;
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
 
+// Access the users data stored in the database
+use Login\V1\Service\LoginServiceInterface;
+
 class LoginResource extends AbstractResourceListener
 {
+    /**
+     * @var LoginServiceInterface
+     */
+    protected $loginService;
+    
     /**
      * Class property mapper
      * holds the input/ouput data for API calls.
      */
     protected $mapper;
     
-    public function __construct(MapperInterface $mapper)
-    {
+    public function __construct(
+        LoginServiceInterface $loginService,
+        MapperInterface $mapper
+    ) {
+        $this->loginService = $loginService;
         $this->mapper = $mapper;
     }
     
@@ -70,13 +81,10 @@ class LoginResource extends AbstractResourceListener
      */
     public function fetchAll($params = [])
     {
-        ob_start();
-        var_dump($params);
-        $str = ob_end_clean();
-        error_log("LoginResource params array $str");
+        // set the users records
+        $this->loginService->pullAppUsers();
         
-        return $this->mapper->fetchAll();
-        // return new ApiProblem(405, 'The GET method has not been defined for collections');
+        return $this->mapper->fetchAll();   
     }
 
     /**

@@ -1,6 +1,9 @@
 <?php
 return array(
     'service_manager' => array(
+        'invokables' => array(
+            'Login\\V1\\Service\\LoginServiceInterface' => 'Login\\V1\\Service\\LoginService',
+        ),
         'factories' => array(
             'Login\\V1\\Rest\\Login\\LoginResource' => 'Login\\V1\\Rest\\Login\\LoginResourceFactory',
         ),

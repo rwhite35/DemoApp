@@ -34,7 +34,8 @@
 		"zfcampus/statuslib-example" : "^1.1",
 		"zendframework/zendframework" : "^3.0",
 		"zfr/zfr-cors" : "1.*",
-		"rwoverdijk/assetmanager" : "^1.7"
+		"rwoverdijk/assetmanager" : "^1.7",
+		"zendframework/zend-db": "^2.9"
 	},
 	"require-dev" : {
 		"zendframework/zend-developer-tools" : "^1.1",
