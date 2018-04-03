@@ -11,16 +11,17 @@ interface MapperInterface
 {
     /**
      * @param array|\Traversable|\stdClass $data 
-     * @param string $user_name the user allowed to login.
+     * @param string (optional)$user_name the user allowed to login.
      * @return Entity
      */
-    public function create($data, $user_name);
+    public function create($data, $userName = null);
 
     /**
-     * @param string $id 
+     * @param string $id, the client users XID
+     * @param int (optional)$orderId the Route Guide order id
      * @return Entity
      */
-    public function fetch($id);
+    public function fetch($id, $orderId = null);
 
     /**
      * @return Collection

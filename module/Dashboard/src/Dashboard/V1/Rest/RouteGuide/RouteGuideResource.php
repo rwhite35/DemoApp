@@ -68,13 +68,33 @@ class RouteGuideResource extends AbstractResourceListener
 
     /**
      * Fetch an Route Guide by Order ID
+     * 
+     * @uses object TableGateway($DB_Table, Db\Adapter_Obj)
      *
-     * @param  mixed $id
+     * @param  mixed $id,  client users XID 
      * @return ApiProblem|mixed
      */
-    public function fetch($id)
+    public function fetch($id, $orderId=1122272)
     {
-        return $this->mapper->fetch($id);
+        //query database here for simple operations
+        $tbl = "am_route_guide_order";
+        $queue = new TableGateway($tbl, $this->db);
+        $rowset = $queue->select('order_id', $orderId); // select(<where>, <equals>)
+        $lastRowObj   = $rowset->current();
+        $oid = $lastRowObj['oid'];
+        error_log('RouteGuideResource fetch with order id  ' . 
+            $orderId . ' returned oid ' . $oid);
+        
+        // format resultSet for update
+        $data = [
+            'oid' => $oid,
+            'order_id' => $orderId
+        ];
+        
+        // instantiates mapper object and append data to entity
+        $this->mapper = $this->update($id, $data);
+        
+        return $this->mapper;
     }
 
     /**
@@ -86,18 +106,8 @@ class RouteGuideResource extends AbstractResourceListener
      * @return ApiProblem|mixed
      */
     public function fetchAll($params = [])
-    { 
-        // get the last record.
-        $tbl = "am_route_guide_order";
-        $table = new TableGateway($tbl, $this->db);
-        $rowset = $table->select();
-        $lastRowObj   = $rowset->current();
-        $oid = $lastRowObj['oid'];
-        // print_r($lastRowObj);
-        error_log('RouteGuideResource last row ' . $oid);
-        
-        return $this->mapper->fetchAll();
-        
+    {   
+        return $this->mapper->fetchAll();  
     }
 
     /**
@@ -137,12 +147,13 @@ class RouteGuideResource extends AbstractResourceListener
     /**
      * Update a resource
      *
-     * @param  mixed $id
+     * @param  mixed $id the client users xid
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
     public function update($id, $data)
     {
-        return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
+        return $this->mapper->update($id, $data);
+        // return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
 }

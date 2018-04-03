@@ -54,9 +54,10 @@ class ArrayMapper implements MapperInterface
 
     /**
      * @param array|Traversable|\stdClass $data
+     * @param string (optionally) $userName
      * @return Entity
      */
-    public function create($data, $user_name)
+    public function create($data, $userName = null)
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
@@ -71,7 +72,7 @@ class ArrayMapper implements MapperInterface
                 __METHOD__
             ));
         // check user names
-        } else if ($data['user'] != $user_name) {
+        } else if ($data['user'] != $userName) {
             $data['message'] = [
                 'error_code' => 401,
                 'error_message' => $data['user'] . ' is an invalid'
@@ -105,9 +106,10 @@ class ArrayMapper implements MapperInterface
 
     /**
      * @param string $id
+     * @param int (optionally)$orderId
      * @return Entity
      */
-    public function fetch($id)
+    public function fetch($id, $orderId = null)
     {
         if (! Uuid::isValid($id)) {
             throw new DomainException('Invalid identifier provided', 404);
