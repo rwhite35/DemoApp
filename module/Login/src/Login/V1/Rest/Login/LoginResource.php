@@ -1,15 +1,16 @@
 <?php
 /**
- * LoginResouce Object listens for API calls and inherits its 
- * functionality from DemoLib (vedor/demolib) which defines each method body.
+ * LoginResouce Object listens for API calls for Entities and Collections.
+ * It inherits some functionality from DemoLib (vedor/demolib) which maps JSON to usable 
+ * array objects but defines its own database interaction through the Login Service Interface.
  */
 namespace Login\V1\Rest\Login;
 
-use DemoLib\MapperInterface;
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
 
-// Access the users data stored in the database
+// Additional backed services 
+use DemoLib\MapperInterface;
 use Login\V1\Service\LoginServiceInterface;
 
 class LoginResource extends AbstractResourceListener
@@ -21,7 +22,7 @@ class LoginResource extends AbstractResourceListener
     
     /**
      * Class property mapper
-     * holds the input/ouput data for API calls.
+     * maps the input/ouput data for API calls.
      */
     protected $mapper;
     
@@ -41,12 +42,12 @@ class LoginResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        // Get Client Users to authenticate against
+        // Get Client Users to authenticate against, only The Penquin is allowed (for demo)
         $cnt = $this->loginService->pullClientUsers(); // return number of client users to check
         $cnt--;
         $uid = $this->loginService->pullClientUser($cnt)->getUid();
         $user_name = $this->loginService->pullClientUser($cnt)->getUserRecord()['user_name'];
-        error_log('LoginResource LoginService->getUid value ' . $uid . ' of count ' . $cnt);
+        // error_log('LoginResource LoginService->getUid value ' . $uid . ' of count ' . $cnt);
         error_log('LoginResource LoginService->getUserRecord name value ' . $user_name . ' of count ' . $cnt);
         
         return $this->mapper->create($data, $user_name);
@@ -79,8 +80,7 @@ class LoginResource extends AbstractResourceListener
 
     /**
      * Fetch all or a subset of Login resources endpoint info
-     * This return the configurations for the resources endpoint
-     * collection
+     * This return the configurations for the resources endpoint collection
      *
      * @param  array $params, the Mapper interface doesnt specific any parameters.
      * however, the outside could pass in params and some logic could handle the
@@ -114,8 +114,8 @@ class LoginResource extends AbstractResourceListener
      */
     public function update($id, $data)
     {
-        return $this->mapper->update($id, $data);
-        // return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
+        // return $this->mapper->update($id, $data);
+        return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
     
     /**

@@ -35,5 +35,6 @@ return array(
     'Application',
     'AssetManager',
     'Login',
-    'DemoLib'
+    'DemoLib',
+    'Dashboard',
 );

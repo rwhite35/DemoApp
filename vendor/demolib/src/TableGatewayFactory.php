@@ -23,8 +23,8 @@ class TableGatewayFactory
 {
     public function __invoke($services)
     {
-        $db    = 'Db\DemoLib';
-        $table = 'demo';
+        $db    = 'Db\Demo';                     // was DemoLib
+        $table = 'am_route_guide_order';        // table was demo
         if ($services->has('config')) {
             $config = $services->get('config');
             switch (isset($config['demolib'])) {

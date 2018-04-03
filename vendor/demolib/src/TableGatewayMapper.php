@@ -35,7 +35,7 @@ class TableGatewayMapper implements MapperInterface
      * @param array|Traversable|\stdClass $data
      * @return Entity
      */
-    public function create($data)
+    public function create($data, $user_name)
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
